@@ -1,0 +1,290 @@
+/* Advanced Progress Bar Styles */
+.progress-container {
+    width: 100%;
+    background-color: #e9ecef;
+    border-radius: 0.375rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    height: 1rem;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    border-radius: 0.375rem;
+    transition: width 0.6s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar.striped {
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-size: 1rem 1rem;
+}
+
+.progress-bar.animated {
+    animation: progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes progress-bar-stripes {
+    0% {
+        background-position: 1rem 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+/* Gradient Progress Bars */
+.progress-bar.gradient-1 {
+    background: linear-gradient(90deg, #ff6b6b, #ee5a24);
+}
+
+.progress-bar.gradient-2 {
+    background: linear-gradient(90deg, #48cae4, #0096c7);
+}
+
+.progress-bar.gradient-3 {
+    background: linear-gradient(90deg, #51cf66, #2b8a3e);
+}
+
+.progress-bar.gradient-4 {
+    background: linear-gradient(90deg, #ffd43b, #f08c00);
+}
+
+/* Size Variants */
+.progress-sm {
+    height: 0.5rem;
+}
+
+.progress-lg {
+    height: 1.5rem;
+}
+
+.progress-xl {
+    height: 2rem;
+}
+
+/* Security Scan Specific Progress */
+.security-progress {
+    height: 0.5rem;
+    background: #1a1a1a;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.security-progress .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00b4d8, #0077b6);
+    border-radius: 1rem;
+    position: relative;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.security-progress .progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: security-shimmer 2s infinite;
+}
+
+@keyframes security-shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Step Progress */
+.step-progress {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 2rem 0;
+}
+
+.step-progress::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #e9ecef;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.step {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.step.active {
+    background: #007bff;
+    color: white;
+    transform: scale(1.1);
+}
+
+.step.completed {
+    background: #28a745;
+    color: white;
+}
+
+.step.completed::after {
+    content: '✓';
+    font-weight: bold;
+}
+
+/* Circular Progress */
+.circular-progress {
+    width: 80px;
+    height: 80px;
+    position: relative;
+}
+
+.circular-progress svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.circular-progress circle {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.8s ease;
+}
+
+.circular-progress .bg {
+    stroke: #e9ecef;
+}
+
+.circular-progress .progress {
+    stroke: #007bff;
+    stroke-dasharray: 251.2;
+    stroke-dashoffset: 251.2;
+}
+
+.circular-progress .progress.gradient {
+    stroke: url(#progressGradient);
+}
+
+.circular-progress .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Progress with percentage */
+.progress-with-percentage {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.progress-with-percentage .progress {
+    flex: 1;
+}
+
+.progress-with-percentage .percentage {
+    font-weight: bold;
+    color: #007bff;
+    min-width: 3rem;
+}
+
+/* Multi-step progress */
+.multi-step-progress {
+    counter-reset: step;
+    display: flex;
+    margin: 2rem 0;
+}
+
+.multi-step-progress .step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+.multi-step-progress .step::before {
+    counter-increment: step;
+    content: counter(step);
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid #e9ecef;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.5rem;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.multi-step-progress .step.active::before {
+    border-color: #007bff;
+    background: #007bff;
+    color: white;
+}
+
+.multi-step-progress .step.completed::before {
+    border-color: #28a745;
+    background: #28a745;
+    color: white;
+    content: '✓';
+}
+
+.multi-step-progress .step::after {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    left: -50%;
+    right: 50%;
+    height: 2px;
+    background: #e9ecef;
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+.multi-step-progress .step:first-child::after {
+    display: none;
+}
+
+.multi-step-progress .step.active::after,
+.multi-step-progress .step.completed::after {
+    background: #007bff;
+}
+
+/* Glass morphism progress */
+.glass-progress {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.glass-progress .progress-bar {
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0.3), 
+        rgba(255, 255, 255, 0.6));
+    backdrop-filter: blur(5px);
+}
