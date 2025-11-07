@@ -1,0 +1,11 @@
+language = "nodejs"
+run = "npm start"
+[nix]
+channel = "nodejs-18"
+
+[env]
+BOT_TOKEN = "your_bot_token_here"
+ADMIN_CHAT_ID = "your_chat_id_here"
+
+[git]
+enableGitHubImport = true
